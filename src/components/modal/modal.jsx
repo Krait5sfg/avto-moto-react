@@ -1,8 +1,14 @@
 import React from 'react';
 
 const Modal = ({isActive, onModalCloseClick}) => {
+  React.useEffect(() => {
+    if (isActive) {
+      inputNameRef.current.focus();
+    }
+  });
 
   const elementClassName = isActive ? `modal modal--active` : `modal`;
+  const inputNameRef = React.createRef();
 
   return (
     <div
@@ -18,7 +24,7 @@ const Modal = ({isActive, onModalCloseClick}) => {
           <div className="form__left-block">
             <p className="form__info">Пожалуйста, заполните поле</p>
             <label className="form__name-field-label visually-hidden" htmlFor="name" aria-label="Поле для ввода имени"></label>
-            <input className="form__input form__input--name" type="text" placeholder="Имя" name="name" required id="name" />
+            <input className="form__input form__input--name" type="text" placeholder="Имя" name="name" required id="name" ref={inputNameRef} />
             <label className="form__merit-field-label visually-hidden" htmlFor="merit"
               aria-label="Поле для ввода положительных особенностей автомобиля"></label>
             <input className="form__input form__input--merit" type="text" name="merit" id="merit" placeholder="Достоинства" />
