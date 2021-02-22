@@ -1,12 +1,17 @@
 import React from 'react';
 
-const Modal = ({isActive}) => {
+const Modal = ({isActive, onModalCloseClick}) => {
 
   const elementClassName = isActive ? `modal modal--active` : `modal`;
 
   return (
-    <div className={elementClassName}>
-      <div className="modal__content">
+    <div
+      className={elementClassName}
+      onClick={onModalCloseClick}>
+      <div className="modal__content"
+        onClick={(evt) => {
+          evt.stopPropagation();
+        }}>
         <h2 className="modal__title">Оставить отзыв</h2>
         <form className="modal__form form" action="somefile.php" method="post">
 
@@ -65,7 +70,10 @@ const Modal = ({isActive}) => {
 
           <input className="form__submit" type="submit" value="Оставить отзыв" />
         </form>
-        <button className="modal__close">
+        <button
+          className="modal__close"
+          onClick={onModalCloseClick}
+        >
           <svg width="16" height="16">
             <use xlinkHref="#icon-close" />
           </svg>

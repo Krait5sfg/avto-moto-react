@@ -19,3 +19,8 @@ export const IconSetting = {
   SIZES: [34, 42],
   OFFSETS: [-3, -42]
 }
+
+export const EscapeCode = {
+  STRING: `Escape`,
+  NUMBER: 27
+}

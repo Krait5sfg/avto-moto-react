@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TabComment = ({isActive, onModalButtonClick}) => {
+const TabComment = ({isActive, onModalOpenButtonClick}) => {
 
   const elementClassName = isActive ? `about__comments comments` : `about__comments comments--not-active`;
 
@@ -8,7 +8,7 @@ const TabComment = ({isActive, onModalButtonClick}) => {
     <div className={elementClassName}>
       <a href="/"
         className="comments__button button button--white-short"
-        onClick={onModalButtonClick}
+        onClick={onModalOpenButtonClick}
       >Оставить отзыв</a>
       <ul className="comments__list">
         <li className="comments__item">
