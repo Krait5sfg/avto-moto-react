@@ -2,9 +2,7 @@ import React from 'react';
 
 const Modal = ({isActive, onModalCloseClick}) => {
   React.useEffect(() => {
-    if (isActive) {
-      inputNameRef.current.focus();
-    }
+    inputNameRef.current.focus();
   });
 
   const elementClassName = isActive ? `modal modal--active` : `modal`;
