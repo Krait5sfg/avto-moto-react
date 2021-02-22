@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './components/app/app';
 
-const element = <h1>Test React</h1>;
 ReactDOM.render(
-  element,
+  <App />,
   document.getElementById('root')
 );
