@@ -4,7 +4,8 @@ import TabSpecification from '../tab-specification/tab-specification';
 import TabComment from '../tab-comment/tab-comment';
 import TabContact from '../tab-contact/tab-contact';
 
-const About = () => {
+const About = ({onModalButtonClick}) => {
+
   const [activeTab, setActiveTab] = React.useState(DEFAULT_ACTIVE_TAB_NAME);
   const [specification, comment, contact] = TABS;
 
@@ -33,7 +34,7 @@ const About = () => {
           {tabElements}
         </ul>
         <TabSpecification isActive={activeTab === specification ? true : false} />
-        <TabComment isActive={activeTab === comment ? true : false} />
+        <TabComment isActive={activeTab === comment ? true : false} onModalButtonClick={onModalButtonClick} />
         <TabContact isActive={activeTab === contact ? true : false} />
       </div>
     </section>
