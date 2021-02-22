@@ -1,9 +1,9 @@
 import React from 'react';
+import {YMaps, Map, Placemark} from 'react-yandex-maps';
+import mapIcon from '../../icon/location.svg';
+import {MapSetting, IconSetting} from '../../utils/const';
 
 const TabContact = ({isActive}) => {
-  React.useEffect(() => console.log(blockMap.current));
-  const blockMap = React.createRef();
-  console.log(blockMap.current);
 
   const elementClassName = isActive ? `about__contact contact` : `about__contact contact--not-active`;
 
@@ -27,9 +27,20 @@ const TabContact = ({isActive}) => {
           <a className="contact__text contact__text--link" href="mailto:info@avto-moto.ru?subject=avto-moto.ru">info@avto-moto.ru</a>
         </li>
       </ul>
-      <div id="map" className="contact__map" ref={blockMap}>
-        {/* яндекс API */}
-      </div>
+      {/* яндекс API */}
+      <YMaps>
+        <Map defaultState={{center: MapSetting.COORDINATES, zoom: MapSetting.ZOOM}} className={MapSetting.CONTAINER}>
+          <Placemark
+            geometry={IconSetting.COORDINATES}
+            options={{
+              iconLayout: IconSetting.LAYOUT,
+              iconImageHref: mapIcon,
+              iconImageSize: IconSetting.SIZES,
+              iconImageOffset: IconSetting.OFFSETS
+            }}
+          />
+        </Map>
+      </YMaps >
     </div>
   )
 };
