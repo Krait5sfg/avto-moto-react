@@ -5,6 +5,26 @@ export const HEADER_LINKS = [
   {title: `Услуги`, path: `/`},
   {title: `Вакансии`, path: `/`},
 ];
+export const BIG_SLIDER_IMAGES = [
+  {
+    sourceSet: `img/black-car@1x.webp 1x, img/black-car@2x.webp 2x`,
+    imageSource: `img/black-car@1x.jpg`,
+    imageSourceSet: `img/black-car@2x.jpg 2x`,
+    imageDescription: `Марпех 11, вид снаружи`,
+  },
+  {
+    sourceSet: `img/desktop-car@1x.webp 1x, img/desktop-car@2x.webp 2x`,
+    imageSource: `img/desktop-car@1x.jpg`,
+    imageSourceSet: `img/desktop-car@2x.jpg 2x`,
+    imageDescription: `Марпех 11, вид приборной панели`,
+  },
+  {
+    sourceSet: `img/desktop-speedo@1x.webp 1x, img/desktop-speedo@2x.webp 2x`,
+    imageSource: `img/desktop-speedo@1x.jpg`,
+    imageSourceSet: `img/desktop-speedo@2x.jpg 2x`,
+    imageDescription: `Марпех 11, вид спидометра`,
+  }
+]
 export const TABS = [`Характеристики`, `Отзывы`, `Контакты`];
 export const DEFAULT_ACTIVE_TAB_NAME = `Характеристики`;
 export const EMPTY_STRING_VALUE = ``;
@@ -20,9 +40,9 @@ export const FOOTER_LINKS = [
 ];
 
 export const NumberSliderImage = {
-  FIRST: 1,
-  SECOND: 2,
-  THIRD: 3
+  FIRST: 0,
+  SECOND: 1,
+  THIRD: 2
 };
 
 export const MapSetting = {
