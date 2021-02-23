@@ -1,3 +1,10 @@
+export const COMPANY_NAMES = [`Avto`, `Moto`];
+export const HEADER_LINKS = [
+  {title: `Автомобили`, path: `/`},
+  {title: `Контакты`, path: `/`},
+  {title: `Услуги`, path: `/`},
+  {title: `Вакансии`, path: `/`},
+];
 export const TABS = [`Характеристики`, `Отзывы`, `Контакты`];
 export const DEFAULT_ACTIVE_TAB_NAME = `Характеристики`;
 export const EMPTY_STRING_VALUE = ``;
