@@ -1,5 +1,7 @@
 export const TABS = [`Характеристики`, `Отзывы`, `Контакты`];
 export const DEFAULT_ACTIVE_TAB_NAME = `Характеристики`;
+export const EMPTY_STRING_VALUE = ``;
+export const EMPTY_ARRAY_VALUE = 0;
 
 export const NumberSliderImage = {
   FIRST: 1,
@@ -24,3 +26,11 @@ export const EscapeCode = {
   STRING: `Escape`,
   NUMBER: 27
 }
+
+export const FormFieldName = {
+  NAME: `name`,
+  MERIT: `merit`,
+  FLAW: `flaw`,
+  RATING: `rating`,
+  COMMENT: `comment`
+};

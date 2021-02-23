@@ -1,12 +1,36 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {ActionCreator} from '../../store/action';
+import {EMPTY_STRING_VALUE, FormFieldName} from '../../utils/const';
+import {getDate} from '../../utils/utils';
 
-const Modal = ({isActive, onModalCloseClick}) => {
+const Modal = ({isActive, onModalCloseClick, updateComments}) => {
   React.useEffect(() => {
     inputNameRef.current.focus();
   });
 
   const elementClassName = isActive ? `modal modal--active` : `modal`;
   const inputNameRef = React.createRef();
+  const formRef = React.createRef();
+
+  const onFormSubmit = (evt) => {
+    evt.preventDefault();
+    const formData = new FormData(formRef.current);
+
+    if (formData.get(FormFieldName.NAME) === EMPTY_STRING_VALUE || formData.get(FormFieldName.COMMENT) === EMPTY_STRING_VALUE) {
+      return false;
+    }
+
+    const comments = [{
+      name: formData.get(FormFieldName.NAME),
+      merit: formData.get(FormFieldName.MERIT),
+      flaw: formData.get(FormFieldName.FLAW),
+      rating: formData.get(FormFieldName.RATING),
+      comment: formData.get(FormFieldName.COMMENT),
+      date: getDate(),
+    }];
+    updateComments(comments);
+  }
 
   return (
     <div
@@ -17,12 +41,17 @@ const Modal = ({isActive, onModalCloseClick}) => {
           evt.stopPropagation();
         }}>
         <h2 className="modal__title">Оставить отзыв</h2>
-        <form className="modal__form form" action="somefile.php" method="post">
+        <form className="modal__form form"
+          action="somefile.php"
+          method="post"
+          ref={formRef}
+          onSubmit={onFormSubmit}
+        >
 
           <div className="form__left-block">
             <p className="form__info">Пожалуйста, заполните поле</p>
             <label className="form__name-field-label visually-hidden" htmlFor="name" aria-label="Поле для ввода имени"></label>
-            <input className="form__input form__input--name" type="text" placeholder="Имя" name="name" required id="name" ref={inputNameRef} />
+            <input className="form__input form__input--name" type="text" placeholder="Имя" name="name" id="name" required ref={inputNameRef} />
             <label className="form__merit-field-label visually-hidden" htmlFor="merit"
               aria-label="Поле для ввода положительных особенностей автомобиля"></label>
             <input className="form__input form__input--merit" type="text" name="merit" id="merit" placeholder="Достоинства" />
@@ -87,4 +116,10 @@ const Modal = ({isActive, onModalCloseClick}) => {
   );
 };
 
-export default Modal;
+const mapDispatchToProps = ((dispatch) => ({
+  updateComments(comments) {
+    dispatch(ActionCreator.updateComments(comments));
+  }
+}));
+
+export default connect(null, mapDispatchToProps)(Modal);
