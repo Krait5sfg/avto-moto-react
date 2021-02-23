@@ -30,6 +30,9 @@ const Modal = ({isActive, onModalCloseClick, updateComments}) => {
       date: getDate(),
     }];
     updateComments(comments);
+
+    //save data from form to LocalStorage
+    localStorage.setItem('userFormData', JSON.stringify(comments[0]));
   }
 
   return (
