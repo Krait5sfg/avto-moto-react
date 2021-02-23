@@ -1,18 +1,21 @@
 import React from 'react';
+import {FOOTER_LINKS} from '../../utils/const';
 
 const Footer = () => {
+
+  const footerItemElements = FOOTER_LINKS.map(({title, path}, index) => {
+    return (
+      <li className="footer__item" key={`${index}-${title}`}>
+        <a className="footer__link" href={path}>{title}</a>
+      </li>
+    );
+  });
 
   return (
     <footer className="footer">
       <div className="footer__wrapper">
         <ul className="footer__list">
-          <li className="footer__item"><a className="footer__link" href="/">Корпоративным клиентам</a></li>
-          <li className="footer__item"><a className="footer__link" href="/">Клиентам</a></li>
-          <li className="footer__item"><a className="footer__link" href="/">Аренда авто</a></li>
-          <li className="footer__item"><a className="footer__link" href="/">Каршеринг</a></li>
-          <li className="footer__item"><a className="footer__link" href="/">Как продать авто</a></li>
-          <li className="footer__item"><a className="footer__link" href="/">Traid-in</a></li>
-          <li className="footer__item"><a className="footer__link" href="/">Test draiv</a></li>
+          {footerItemElements}
         </ul>
       </div>
     </footer>

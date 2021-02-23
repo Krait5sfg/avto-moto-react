@@ -9,6 +9,15 @@ export const TABS = [`Характеристики`, `Отзывы`, `Конта
 export const DEFAULT_ACTIVE_TAB_NAME = `Характеристики`;
 export const EMPTY_STRING_VALUE = ``;
 export const EMPTY_ARRAY_VALUE = 0;
+export const FOOTER_LINKS = [
+  {title: `Корпоративным клиентам`, path: `/`},
+  {title: `Клиентам`, path: `/`},
+  {title: `Аренда авто`, path: `/`},
+  {title: `Каршеринг`, path: `/`},
+  {title: `Как продать авто`, path: `/`},
+  {title: `Traid-in`, path: `/`},
+  {title: `Test draiv`, path: `/`},
+];
 
 export const NumberSliderImage = {
   FIRST: 1,
