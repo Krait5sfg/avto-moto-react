@@ -3,6 +3,7 @@ import Header from '../header/header';
 import Goods from '../goods/goods';
 import About from '../about/about';
 import Modal from '../modal/modal';
+import Footer from '../footer/footer';
 import {EscapeCode} from '../../utils/const';
 
 const MainPage = () => {
@@ -36,6 +37,7 @@ const MainPage = () => {
       <Header />
       <Goods />
       <About onModalOpenButtonClick={onModalOpenButtonClick} />
+      <Footer />
       <Modal
         isActive={isModalActive}
         onModalCloseClick={onModalCloseClick}

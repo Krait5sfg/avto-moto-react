@@ -3,6 +3,7 @@ import {TABS, DEFAULT_ACTIVE_TAB_NAME} from '../../utils/const';
 import TabSpecification from '../tab-specification/tab-specification';
 import TabComment from '../tab-comment/tab-comment';
 import TabContact from '../tab-contact/tab-contact';
+import PropTypes from 'prop-types';
 
 const About = ({onModalOpenButtonClick}) => {
 
@@ -39,6 +40,10 @@ const About = ({onModalOpenButtonClick}) => {
       </div>
     </section>
   );
+};
+
+About.propTypes = {
+  onModalOpenButtonClick: PropTypes.func.isRequired
 };
 
 export default About;

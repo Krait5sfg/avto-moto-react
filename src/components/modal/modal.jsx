@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {ActionCreator} from '../../store/action';
 import {EMPTY_STRING_VALUE, FormFieldName} from '../../utils/const';
 import {getDate} from '../../utils/utils';
+import PropTypes from 'prop-types';
 
 const Modal = ({isActive, onModalCloseClick, updateComments}) => {
   React.useEffect(() => {
@@ -117,6 +118,12 @@ const Modal = ({isActive, onModalCloseClick, updateComments}) => {
       </div>
     </div>
   );
+};
+
+Modal.propTypes = {
+  isActive: PropTypes.bool.isRequired,
+  onModalCloseClick: PropTypes.func.isRequired,
+  updateComments: PropTypes.func.isRequired
 };
 
 const mapDispatchToProps = ((dispatch) => ({

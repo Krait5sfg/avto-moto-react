@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {convertDateInHumanizeView, getStarElementFromRating} from '../../utils/utils';
 import {EMPTY_ARRAY_VALUE} from '../../utils/const';
+import PropTypes from 'prop-types';
 
 const TabComment = ({isActive, onModalOpenButtonClick, comments}) => {
 
@@ -59,6 +60,12 @@ const TabComment = ({isActive, onModalOpenButtonClick, comments}) => {
       </ul >
     </div >
   )
+};
+
+TabComment.propTypes = {
+  isActive: PropTypes.bool.isRequired,
+  onModalOpenButtonClick: PropTypes.func.isRequired,
+  comments: PropTypes.array.isRequired
 };
 
 const mapStateToProps = (({comments}) => {

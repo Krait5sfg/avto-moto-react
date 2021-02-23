@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const TabSpecification = ({isActive}) => {
   const elementClassName = isActive ? `about__specifications-list specification` : `about__specifications-list specification--not-active`;
@@ -35,6 +36,10 @@ const TabSpecification = ({isActive}) => {
       </li>
     </ul>
   );
+};
+
+TabSpecification.propTypes = {
+  isActive: PropTypes.bool.isRequired,
 };
 
 export default TabSpecification;

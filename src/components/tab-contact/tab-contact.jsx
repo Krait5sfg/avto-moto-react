@@ -2,6 +2,7 @@ import React from 'react';
 import {YMaps, Map, Placemark} from 'react-yandex-maps';
 import mapIcon from '../../icon/location.svg';
 import {MapSetting, IconSetting} from '../../utils/const';
+import PropTypes from 'prop-types';
 
 const TabContact = ({isActive}) => {
 
@@ -43,6 +44,10 @@ const TabContact = ({isActive}) => {
       </YMaps >
     </div>
   )
+};
+
+TabContact.propTypes = {
+  isActive: PropTypes.bool.isRequired,
 };
 
 export default TabContact;
