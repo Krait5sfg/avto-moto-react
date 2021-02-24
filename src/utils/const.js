@@ -49,6 +49,7 @@ export const TABS = [`Характеристики`, `Отзывы`, `Конта
 export const DEFAULT_ACTIVE_TAB_NAME = `Характеристики`;
 export const EMPTY_STRING_VALUE = ``;
 export const EMPTY_ARRAY_VALUE = 0;
+export const RATINGS = [`5`, `4`, `3`, `2`, `1`];
 export const FOOTER_LINKS = [
   {title: `Корпоративным клиентам`, path: `/`},
   {title: `Клиентам`, path: `/`},

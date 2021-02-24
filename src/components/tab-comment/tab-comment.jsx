@@ -11,9 +11,9 @@ const TabComment = ({isActive, onModalOpenButtonClick, comments}) => {
   let commentsItemElements = [];
 
   if (comments.length !== EMPTY_ARRAY_VALUE) {
-    commentsItemElements = comments.map((element, index) => {
+    commentsItemElements = comments.map(({name, merit, flaw, rating, comment, date}, index) => {
 
-      const starsElements = getStarElementFromRating(element.rating).map((starIdName, index) => {
+      const starsElements = getStarElementFromRating(rating).map((starIdName, index) => {
         return (
           <svg width="17" height="17" key={index}>
             <use xlinkHref={starIdName} />
@@ -22,26 +22,26 @@ const TabComment = ({isActive, onModalOpenButtonClick, comments}) => {
       });
 
       return (
-        <li className="comments__item" key={`${index}-${element.name}`}>
-          <span className="comments__user-name">{element.name}</span>
+        <li className="comments__item" key={`${index}-${name}`}>
+          <span className="comments__user-name">{name}</span>
           <div className="comments__merit">
             <span className="comments__title">Достоинства</span>
-            <span className="comments__text">{element.merit}</span>
+            <span className="comments__text">{merit}</span>
           </div>
           <div className="comments__flaw">
             <span className="comments__title">Недостатки</span>
-            <span className="comments__text">{element.flaw}</span>
+            <span className="comments__text">{flaw}</span>
           </div>
           <div className="comments__recall">
             <span className="comments__title">Комментарий</span>
-            <span className="comments__text">{element.comment}</span>
+            <span className="comments__text">{comment}</span>
           </div>
           <div className="comments__stars">
             {starsElements}
             <span className="comments__text comments__text--red">Советует</span>
           </div >
           <div className="comments__time">
-            <span className="comments__response-time">{convertDateInHumanizeView(element.date)}</span>
+            <span className="comments__response-time">{convertDateInHumanizeView(date)}</span>
             <a className="comments__link" href="/">Ответить</a>
           </div>
         </li >
