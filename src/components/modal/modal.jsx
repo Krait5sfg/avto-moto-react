@@ -9,23 +9,54 @@ const Modal = ({isActive, onModalCloseClick, updateComments}) => {
   const [isErrorValidationName, setErrorValidationName] = React.useState(false);
   const [isErrorValidationComment, setErrorValidationComment] = React.useState(false);
   const [isCommentFieldWasInWorkLast, setCommentFieldWasInWorkLast] = React.useState(false);
-  React.useEffect(() => {
 
+  React.useEffect(() => {
+    // получаем данные из localStorage если они есть и записываем их в форму
+    const dataFromLocalStorage = JSON.parse(localStorage.getItem(`userFormData`));
+    if (dataFromLocalStorage) {
+      inputNameRef.current.value = dataFromLocalStorage.name;
+      inputMeritRef.current.value = dataFromLocalStorage.merit;
+      inputFlawRef.current.value = dataFromLocalStorage.flaw;
+      inputCommentRef.current.value = dataFromLocalStorage.comment;
+      // находим нужный radio и ставим checked
+      Array.from(radioBlock.current.children).forEach((element) => {
+        if (element.value === dataFromLocalStorage.rating) {
+          element.checked = true;
+        }
+      })
+    }
+
+    // правила для установления фокуса при открытии / перерисовке модального окна
     if (isErrorValidationName) {
       inputNameRef.current.focus();
+      return false;
     }
     if (isErrorValidationComment || isCommentFieldWasInWorkLast) {
       inputCommentRef.current.focus();
       return false;
     }
-
     inputNameRef.current.focus();
   });
 
   const elementClassName = isActive ? `modal modal--active` : `modal`;
   const inputNameRef = React.createRef();
+  const inputMeritRef = React.createRef();
+  const inputFlawRef = React.createRef();
   const inputCommentRef = React.createRef();
+  const radioBlock = React.createRef();
   const formRef = React.createRef();
+
+  const resetFormField = () => {
+    inputNameRef.current.value = ``;
+    inputMeritRef.current.value = ``;
+    inputFlawRef.current.value = ``;
+    inputCommentRef.current.value = ``;
+    Array.from(radioBlock.current.children).forEach((element) => {
+      if (element.checked === true) {
+        element.checked = false;
+      }
+    })
+  };
 
   const onFormSubmit = (evt) => {
     evt.preventDefault();
@@ -43,17 +74,19 @@ const Modal = ({isActive, onModalCloseClick, updateComments}) => {
       return false;
     }
 
-    const comments = [{
+    updateComments([{
       name: formData.get(FormFieldName.NAME),
       merit: formData.get(FormFieldName.MERIT),
       flaw: formData.get(FormFieldName.FLAW),
       rating: formData.get(FormFieldName.RATING),
       comment: formData.get(FormFieldName.COMMENT),
       date: getDate(),
-    }];
-    updateComments(comments);
+    }]);
 
     onModalCloseClick(evt);
+    localStorage.removeItem(`userFormData`); //при успешной отправке формы данные из localStorage удаляются
+    resetFormField(); // обнуляем данные из формы
+    setCommentFieldWasInWorkLast(false); // для того чтобы фокус при открытии мод. окна был в поле name
   }
 
   const onFormInput = (evt) => {
@@ -65,6 +98,16 @@ const Modal = ({isActive, onModalCloseClick, updateComments}) => {
       setErrorValidationComment(false);
       setCommentFieldWasInWorkLast(true);
     }
+
+    //Запись в LocalStorage
+    const formData = new FormData(formRef.current);
+    localStorage.setItem(`userFormData`, JSON.stringify({
+      name: formData.get(FormFieldName.NAME),
+      merit: formData.get(FormFieldName.MERIT),
+      flaw: formData.get(FormFieldName.FLAW),
+      rating: formData.get(FormFieldName.RATING),
+      comment: formData.get(FormFieldName.COMMENT),
+    }))
   };
 
   const formRatingInputElements = RATINGS.map((numberRating, index) => {
@@ -103,12 +146,12 @@ const Modal = ({isActive, onModalCloseClick, updateComments}) => {
             <input className={isErrorValidationName ? `form__input form__input--name form__input--not-valid` : `form__input form__input--name`} type="text" placeholder="Имя" name="name" id="name" ref={inputNameRef} />
             <label className="form__merit-field-label visually-hidden" htmlFor="merit"
               aria-label="Поле для ввода положительных особенностей автомобиля"></label>
-            <input className="form__input form__input--merit" type="text" name="merit" id="merit" placeholder="Достоинства" />
-            <input className="form__input form__input--flaw" type="text" name="flaw" id="flaw" placeholder="Недостатки" />
+            <input className="form__input form__input--merit" type="text" name="merit" id="merit" placeholder="Достоинства" ref={inputMeritRef} />
+            <input className="form__input form__input--flaw" type="text" name="flaw" id="flaw" placeholder="Недостатки" ref={inputFlawRef} />
           </div>
 
           <div className="form__right-block">
-            <div className="form__rating-block">
+            <div className="form__rating-block" ref={radioBlock}>
               {formRatingInputElements}
               <p className="form__title-rating">Оцените товар:</p>
             </div>
