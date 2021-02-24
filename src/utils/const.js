@@ -20,7 +20,7 @@ export const FOOTER_LINKS = [
   {title: `Traid-in`, path: `/`},
   {title: `Test draiv`, path: `/`},
 ];
-
+export const NAME_ITEM_IN_LOCAL_STORAGE = `userFormData`;
 export const NumberSliderImage = {
   FIRST: 0,
   SECOND: 1,

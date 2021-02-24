@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {ActionCreator} from '../../store/action';
-import {EMPTY_STRING_VALUE, FormFieldName, RATINGS} from '../../utils/const';
+import {EMPTY_STRING_VALUE, FormFieldName, RATINGS, NAME_ITEM_IN_LOCAL_STORAGE} from '../../utils/const';
 import {getDate} from '../../utils/utils';
 import PropTypes from 'prop-types';
 
@@ -12,7 +12,7 @@ const Modal = ({isActive, onModalCloseClick, updateComments}) => {
 
   React.useEffect(() => {
     // получаем данные из localStorage если они есть и записываем их в форму
-    const dataFromLocalStorage = JSON.parse(localStorage.getItem(`userFormData`));
+    const dataFromLocalStorage = JSON.parse(localStorage.getItem(NAME_ITEM_IN_LOCAL_STORAGE));
     if (dataFromLocalStorage) {
       inputNameRef.current.value = dataFromLocalStorage.name;
       inputMeritRef.current.value = dataFromLocalStorage.merit;
@@ -47,10 +47,10 @@ const Modal = ({isActive, onModalCloseClick, updateComments}) => {
   const formRef = React.createRef();
 
   const resetFormField = () => {
-    inputNameRef.current.value = ``;
-    inputMeritRef.current.value = ``;
-    inputFlawRef.current.value = ``;
-    inputCommentRef.current.value = ``;
+    inputNameRef.current.value = EMPTY_STRING_VALUE;
+    inputMeritRef.current.value = EMPTY_STRING_VALUE;
+    inputFlawRef.current.value = EMPTY_STRING_VALUE;
+    inputCommentRef.current.value = EMPTY_STRING_VALUE;
     Array.from(radioBlock.current.children).forEach((element) => {
       if (element.checked === true) {
         element.checked = false;
@@ -84,24 +84,24 @@ const Modal = ({isActive, onModalCloseClick, updateComments}) => {
     }]);
 
     onModalCloseClick(evt);
-    localStorage.removeItem(`userFormData`); //при успешной отправке формы данные из localStorage удаляются
+    localStorage.removeItem(NAME_ITEM_IN_LOCAL_STORAGE); //при успешной отправке формы данные из localStorage удаляются
     resetFormField(); // обнуляем данные из формы
     setCommentFieldWasInWorkLast(false); // для того чтобы фокус при открытии мод. окна был в поле name
   }
 
   const onFormInput = (evt) => {
-    if (evt.target.name === `name` && isErrorValidationName === true) {
+    if (evt.target.name === FormFieldName.NAME && isErrorValidationName === true) {
       setErrorValidationName(false);
       setCommentFieldWasInWorkLast(false); //для того чтобы фокус не перескакивал с инпута name на comment
     }
-    if (evt.target.name === `comment` && isErrorValidationComment === true) {
+    if (evt.target.name === FormFieldName.COMMENT && isErrorValidationComment === true) {
       setErrorValidationComment(false);
       setCommentFieldWasInWorkLast(true);
     }
 
     //Запись в LocalStorage
     const formData = new FormData(formRef.current);
-    localStorage.setItem(`userFormData`, JSON.stringify({
+    localStorage.setItem(NAME_ITEM_IN_LOCAL_STORAGE, JSON.stringify({
       name: formData.get(FormFieldName.NAME),
       merit: formData.get(FormFieldName.MERIT),
       flaw: formData.get(FormFieldName.FLAW),
