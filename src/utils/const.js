@@ -25,6 +25,26 @@ export const BIG_SLIDER_IMAGES = [
     imageDescription: `Марпех 11, вид спидометра`,
   }
 ]
+export const SMALL_SLIDER_IMAGES = [
+  {
+    sourceSet: `img/black-car-mini@1x.webp 1x, img/black-car-mini@2x.webp 2x`,
+    imageSource: `img/black-car-mini@1x.jpg`,
+    imageSourceSet: `img/black-car-mini@2x.jpg 2x`,
+    imageDescription: `Марпех 11, вид снаружи, маленькое изображение`,
+  },
+  {
+    sourceSet: `img/desktop-car-mini@1x.webp 1x, img/desktop-car-mini@2x.webp 2x`,
+    imageSource: `img/desktop-car-mini@1x.jpg`,
+    imageSourceSet: `img/desktop-car-mini@2x.jpg 2x`,
+    imageDescription: `Марпех 11, вид приборной панели, маленькое изображение`,
+  },
+  {
+    sourceSet: `img/desktop-speedo-mini@1x.webp 1x, img/desktop-speedo-mini@2x.webp 2x`,
+    imageSource: `img/desktop-speedo-mini@1x.jpg`,
+    imageSourceSet: `img/desktop-speedo-mini@2x.jpg 2x`,
+    imageDescription: `Марпех 11, вид спидометра, маленькое изображение`,
+  }
+]
 export const TABS = [`Характеристики`, `Отзывы`, `Контакты`];
 export const DEFAULT_ACTIVE_TAB_NAME = `Характеристики`;
 export const EMPTY_STRING_VALUE = ``;

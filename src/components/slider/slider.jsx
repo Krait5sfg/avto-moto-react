@@ -1,5 +1,5 @@
 import React from 'react';
-import {NumberSliderImage, BIG_SLIDER_IMAGES} from '../../utils/const';
+import {NumberSliderImage, BIG_SLIDER_IMAGES, SMALL_SLIDER_IMAGES} from '../../utils/const';
 
 const Slider = () => {
   let [count, setCount] = React.useState(NumberSliderImage.FIRST);
@@ -14,6 +14,18 @@ const Slider = () => {
     )
   });
 
+  const smallSliderImages = SMALL_SLIDER_IMAGES.map(({sourceSet, imageSource, imageSourceSet, imageDescription}, index) => {
+    return (
+      <li className="slider__item" key={index}>
+        <picture>
+          <source type="image/webp" srcSet={sourceSet} />
+          <img className="slider__image" src={imageSource} srcSet={imageSourceSet}
+            alt={imageDescription} width="128" height="80" />
+        </picture>
+      </li>
+    )
+  });
+
   return (
     <div className="goods__left-block slider">
       {/* block for big images */}
@@ -22,8 +34,7 @@ const Slider = () => {
       </div>
       {/* block for small images */}
       <ul className="slider__list">
-        <li
-          className="slider__arrow slider__arrow--left"
+        <li className="slider__arrow slider__arrow--left"
           onClick={() => {
             if (count === NumberSliderImage.FIRST || count < NumberSliderImage.FIRST) {
               return false;
@@ -35,29 +46,8 @@ const Slider = () => {
             <use xlinkHref="#icon-arrow-left" />
           </svg>
         </li>
-        <li className="slider__item">
-          <picture>
-            <source type="image/webp" srcSet="img/black-car-mini@1x.webp 1x, img/black-car-mini@2x.webp 2x" />
-            <img className="slider__image" src="img/black-car-mini@1x.jpg" srcSet="img/black-car-mini@2x.jpg 2x"
-              alt="Марпех 11, вид снаружи, маленькое изображение" width="128" height="80" />
-          </picture>
-        </li>
-        <li className="slider__item">
-          <picture>
-            <source type="image/webp" srcSet="img/desktop-car-mini@1x.webp 1x, img/desktop-car-mini@2x.webp 2x" />
-            <img className="slider__image" src="img/desktop-car-mini@1x.jpg" srcSet="img/desktop-car-mini@2x.jpg 2x"
-              alt="Марпех 11, вид приборной панели, маленькое изображение" width="128" height="80" />
-          </picture>
-        </li>
-        <li className="slider__item">
-          <picture>
-            <source type="image/webp" srcSet="img/desktop-speedo-mini@1x.webp 1x, img/desktop-speedo-mini@2x.webp 2x" />
-            <img className="slider__image" src="img/desktop-speedo-mini@1x.jpg" srcSet="img/desktop-speedo-mini@2x.jpg 2x"
-              alt="Марпех 11, вид спидометра, маленькое изображение" width="128" height="80" />
-          </picture>
-        </li>
-        <li
-          className="slider__arrow slider__arrow--right"
+        {smallSliderImages}
+        <li className="slider__arrow slider__arrow--right"
           onClick={() => {
             if (count === NumberSliderImage.THIRD || count > NumberSliderImage.THIRD) {
               return false;
