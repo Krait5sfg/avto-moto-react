@@ -6,19 +6,40 @@ import {getDate} from '../../utils/utils';
 import PropTypes from 'prop-types';
 
 const Modal = ({isActive, onModalCloseClick, updateComments}) => {
+  const [isErrorValidationName, setErrorValidationName] = React.useState(false);
+  const [isErrorValidationComment, setErrorValidationComment] = React.useState(false);
+  const [isCommentFieldWasInWorkLast, setCommentFieldWasInWorkLast] = React.useState(false);
   React.useEffect(() => {
+
+    if (isErrorValidationName) {
+      inputNameRef.current.focus();
+    }
+    if (isErrorValidationComment || isCommentFieldWasInWorkLast) {
+      inputCommentRef.current.focus();
+      return false;
+    }
+
     inputNameRef.current.focus();
   });
 
   const elementClassName = isActive ? `modal modal--active` : `modal`;
   const inputNameRef = React.createRef();
+  const inputCommentRef = React.createRef();
   const formRef = React.createRef();
 
   const onFormSubmit = (evt) => {
     evt.preventDefault();
     const formData = new FormData(formRef.current);
 
-    if (formData.get(FormFieldName.NAME) === EMPTY_STRING_VALUE || formData.get(FormFieldName.COMMENT) === EMPTY_STRING_VALUE) {
+    // проверка поля name
+    if (formData.get(FormFieldName.NAME) === EMPTY_STRING_VALUE) {
+      setErrorValidationName(true);
+      return false;
+    }
+
+    //проверка поля comment
+    if (formData.get(FormFieldName.COMMENT) === EMPTY_STRING_VALUE) {
+      setErrorValidationComment(true);
       return false;
     }
 
@@ -32,9 +53,19 @@ const Modal = ({isActive, onModalCloseClick, updateComments}) => {
     }];
     updateComments(comments);
 
-    //save data from form to LocalStorage
-    localStorage.setItem('userFormData', JSON.stringify(comments[0]));
+    onModalCloseClick(evt);
   }
+
+  const onFormInput = (evt) => {
+    if (evt.target.name === `name` && isErrorValidationName === true) {
+      setErrorValidationName(false);
+      setCommentFieldWasInWorkLast(false); //для того чтобы фокус не перескакивал с инпута name на comment
+    }
+    if (evt.target.name === `comment` && isErrorValidationComment === true) {
+      setErrorValidationComment(false);
+      setCommentFieldWasInWorkLast(true);
+    }
+  };
 
   const formRatingInputElements = RATINGS.map((numberRating, index) => {
     return (
@@ -63,12 +94,13 @@ const Modal = ({isActive, onModalCloseClick, updateComments}) => {
           method="post"
           ref={formRef}
           onSubmit={onFormSubmit}
+          onInput={onFormInput}
         >
 
           <div className="form__left-block">
-            <p className="form__info">Пожалуйста, заполните поле</p>
+            <p className={isErrorValidationName ? `form__info` : `form__info form__info--not-active`}>Пожалуйста, заполните поле</p>
             <label className="form__name-field-label visually-hidden" htmlFor="name" aria-label="Поле для ввода имени"></label>
-            <input className="form__input form__input--name form__input--not-valid" type="text" placeholder="Имя" name="name" id="name" required ref={inputNameRef} />
+            <input className={isErrorValidationName ? `form__input form__input--name form__input--not-valid` : `form__input form__input--name`} type="text" placeholder="Имя" name="name" id="name" ref={inputNameRef} />
             <label className="form__merit-field-label visually-hidden" htmlFor="merit"
               aria-label="Поле для ввода положительных особенностей автомобиля"></label>
             <input className="form__input form__input--merit" type="text" name="merit" id="merit" placeholder="Достоинства" />
@@ -80,9 +112,9 @@ const Modal = ({isActive, onModalCloseClick, updateComments}) => {
               {formRatingInputElements}
               <p className="form__title-rating">Оцените товар:</p>
             </div>
-            <p className="form__info">Пожалуйста, заполните поле</p>
+            <p className={isErrorValidationComment ? `form__info` : `form__info form__info--not-active`}>Пожалуйста, заполните поле</p>
             <label className="form__text-area-label visually-hidden" htmlFor="comment" aria-label="Поле для комментария"></label>
-            <textarea className="form__text-area form__text-area--not-valid" name="comment" id="comment" placeholder="Комментарий" required></textarea>
+            <textarea className={isErrorValidationComment ? `form__text-area form__text-area--not-valid` : `form__text-area`} name="comment" id="comment" placeholder="Комментарий" ref={inputCommentRef}></textarea>
           </div>
 
           <input className="form__submit" type="submit" value="Оставить отзыв" />
@@ -96,7 +128,7 @@ const Modal = ({isActive, onModalCloseClick, updateComments}) => {
           </svg>
         </button>
       </div>
-    </div>
+    </div >
   );
 };
 
