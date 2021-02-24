@@ -14,3 +14,50 @@ export const MOCK_COMMENTS = [{
   comment: `Дизайн отличный, управление просто шикарно, ощущения за рулём такой машины особые. Но ремонт очень дорогой. Пару месяцев назад пришлось менять двигатель. По стоимости вышло как новый автомобиль. Так что, если покупать эту машину, надо быть готовым к большим расходам на обслуживание.`,
   date: `2021-02-23T15:22:49+03:00`,
 }]
+
+export const MOCK_CAR = {
+  name: `Марпех 11`,
+  features: [`бензин`, `механика`, `100 л.с.`, `1.4 л`],
+  currentPrice: `2 300 000`,
+  oldPrice: `2  400 000`,
+  bigSliderImages: [
+    {
+      sourceSet: `img/black-car@1x.webp 1x, img/black-car@2x.webp 2x`,
+      imageSource: `img/black-car@1x.jpg`,
+      imageSourceSet: `img/black-car@2x.jpg 2x`,
+      imageDescription: `Марпех 11, вид снаружи`,
+    },
+    {
+      sourceSet: `img/desktop-car@1x.webp 1x, img/desktop-car@2x.webp 2x`,
+      imageSource: `img/desktop-car@1x.jpg`,
+      imageSourceSet: `img/desktop-car@2x.jpg 2x`,
+      imageDescription: `Марпех 11, вид приборной панели`,
+    },
+    {
+      sourceSet: `img/desktop-speedo@1x.webp 1x, img/desktop-speedo@2x.webp 2x`,
+      imageSource: `img/desktop-speedo@1x.jpg`,
+      imageSourceSet: `img/desktop-speedo@2x.jpg 2x`,
+      imageDescription: `Марпех 11, вид спидометра`,
+    }
+  ],
+  smallSliderImages: [
+    {
+      sourceSet: `img/black-car-mini@1x.webp 1x, img/black-car-mini@2x.webp 2x`,
+      imageSource: `img/black-car-mini@1x.jpg`,
+      imageSourceSet: `img/black-car-mini@2x.jpg 2x`,
+      imageDescription: `Марпех 11, вид снаружи, маленькое изображение`,
+    },
+    {
+      sourceSet: `img/desktop-car-mini@1x.webp 1x, img/desktop-car-mini@2x.webp 2x`,
+      imageSource: `img/desktop-car-mini@1x.jpg`,
+      imageSourceSet: `img/desktop-car-mini@2x.jpg 2x`,
+      imageDescription: `Марпех 11, вид приборной панели, маленькое изображение`,
+    },
+    {
+      sourceSet: `img/desktop-speedo-mini@1x.webp 1x, img/desktop-speedo-mini@2x.webp 2x`,
+      imageSource: `img/desktop-speedo-mini@1x.jpg`,
+      imageSourceSet: `img/desktop-speedo-mini@2x.jpg 2x`,
+      imageDescription: `Марпех 11, вид спидометра, маленькое изображение`,
+    }
+  ]
+}
