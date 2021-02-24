@@ -18,8 +18,38 @@ export const MOCK_COMMENTS = [{
 export const MOCK_CAR = {
   name: `Марпех 11`,
   features: [`бензин`, `механика`, `100 л.с.`, `1.4 л`],
+  detailFeatures: [
+    {
+      type: `Трансмиссия`,
+      description: `Роботизированная`
+    },
+    {
+      type: `Мощность двигателя, л.с.`,
+      description: `249`
+    },
+    {
+      type: `Тип двигателя`,
+      description: `Бензиновый`
+    },
+    {
+      type: `Привод`,
+      description: `Полный`
+    },
+    {
+      type: `Объем двигателя, л`,
+      description: `2.4`
+    },
+    {
+      type: `Макс. крутящий момент`,
+      description: `370/4500`
+    },
+    {
+      type: `Количество цилиндров`,
+      description: `4`
+    }
+  ],
   currentPrice: `2 300 000`,
-  oldPrice: `2  400 000`,
+  oldPrice: `2 400 000`,
   bigSliderImages: [
     {
       sourceSet: `img/black-car@1x.webp 1x, img/black-car@2x.webp 2x`,

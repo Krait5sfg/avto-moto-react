@@ -1,45 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
-const TabSpecification = ({isActive}) => {
+const TabSpecification = ({isActive, car}) => {
+  const {detailFeatures} = car;
   const elementClassName = isActive ? `about__specifications-list specification` : `about__specifications-list specification--not-active`;
+
+  const specificationItemElements = detailFeatures.map(({type, description}, index) => {
+    return (
+      <li className="specification__item" key={index}>
+        <span className="specification__type">{type}</span>
+        <span className="specification__text">{description}</span>
+      </li>
+    );
+  });
 
   return (
     <ul className={elementClassName}>
-      <li className="specification__item">
-        <span className="specification__type">Трансмиссия</span>
-        <span className="specification__text">Роботизированная</span>
-      </li>
-      <li className="specification__item">
-        <span className="specification__type">Мощность двигателя, л.с.</span>
-        <span className="specification__text">249</span>
-      </li>
-      <li className="specification__item">
-        <span className="specification__type">Тип двигателя</span>
-        <span className="specification__text">Бензиновый</span>
-      </li>
-      <li className="specification__item">
-        <span className="specification__type">Привод</span>
-        <span className="specification__text">Полный</span>
-      </li>
-      <li className="specification__item">
-        <span className="specification__type">Объем двигателя, л</span>
-        <span className="specification__text">2.4</span>
-      </li>
-      <li className="specification__item">
-        <span className="specification__type">Макс. крутящий момент</span>
-        <span className="specification__text">370/4500</span>
-      </li>
-      <li className="specification__item">
-        <span className="specification__type">Количество цилиндров</span>
-        <span className="specification__text">4</span>
-      </li>
+      {specificationItemElements}
     </ul>
   );
 };
 
 TabSpecification.propTypes = {
   isActive: PropTypes.bool.isRequired,
+  car: PropTypes.shape({
+    detailFeatures: PropTypes.arrayOf(PropTypes.object).isRequired
+  }).isRequired
 };
 
-export default TabSpecification;
+const mapStateToProps = (({car}) => {
+  return {
+    car
+  }
+});
+
+export default connect(mapStateToProps)(TabSpecification);
