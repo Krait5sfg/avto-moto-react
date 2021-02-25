@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 const TabSpecification = ({isActive, car}) => {
   const {detailFeatures} = car;
-  const elementClassName = isActive ? `about__specifications-list specification` : `about__specifications-list specification--not-active`;
+  const elementClassName = isActive ? `about__specifications-list specification` : `about__specifications-list specification specification--not-active`;
 
   const specificationItemElements = detailFeatures.map(({type, description}, index) => {
     return (

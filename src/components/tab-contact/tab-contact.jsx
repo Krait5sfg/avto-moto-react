@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 const TabContact = ({isActive}) => {
 
-  const elementClassName = isActive ? `about__contact contact` : `about__contact contact--not-active`;
+  const elementClassName = isActive ? `about__contact contact` : `about__contact contact contact--not-active`;
 
   return (
     <div className={elementClassName}>

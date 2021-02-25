@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 const TabComment = ({isActive, onModalOpenButtonClick, comments}) => {
 
-  const elementClassName = isActive ? `about__comments comments` : `about__comments comments--not-active`;
+  const elementClassName = isActive ? `about__comments comments` : `about__comments comments comments--not-active`;
 
   let commentsItemElements = [];
 
