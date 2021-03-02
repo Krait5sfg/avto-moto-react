@@ -39,6 +39,7 @@ const Modal = ({isActive, onModalCloseClick, updateComments}) => {
   });
 
   const elementClassName = isActive ? `modal modal--active` : `modal`;
+  document.body.style.overflow = isActive ? `hidden` : `auto`; // скрывает скролл если открыто мод. окно
   const inputNameRef = React.createRef();
   const inputMeritRef = React.createRef();
   const inputFlawRef = React.createRef();
