@@ -2,12 +2,11 @@
   @include list-reset;
 
   display: flex;
+  flex-wrap: wrap;
 }
 
 .menu__item {
-  &:nth-child(1n):not(:last-child) {
-    margin-right: 68px;
-  }
+  margin-left: 68px;
 }
 
 .menu__link {
