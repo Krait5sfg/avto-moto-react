@@ -17,6 +17,10 @@
   }
 }
 
+.header__icon-logo {
+  flex-shrink: 0;
+}
+
 .header__list {
   @include list-reset;
   margin-left: 19px;

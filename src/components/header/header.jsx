@@ -20,7 +20,7 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header__wrapper">
-        <svg width="55" height="55">
+        <svg className="header__icon-logo" width="55" height="55">
           <use xlinkHref="#icon-logo" />
         </svg>
         <ul className="header__list">
