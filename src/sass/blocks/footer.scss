@@ -20,6 +20,11 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  gap: 20px;
+
+  @media(max-width: 850px) {
+    justify-content: flex-start;
+  }
 }
 
 .footer__item {
@@ -27,6 +32,10 @@
   align-items: center;
   justify-content: center;
   height: 82px;
+
+  @media(max-width: 850px) {
+    flex-grow: 1;
+  }
 }
 
 .footer__link {
