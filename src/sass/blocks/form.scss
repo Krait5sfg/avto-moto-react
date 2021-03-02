@@ -91,6 +91,8 @@
 .form__title-rating {
   @include par-reset;
 
+  margin-right: 5px;
+
   font-family: $opensans;
   font-weight: 600;
   font-size: 15px;
